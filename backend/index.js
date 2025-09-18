@@ -52,7 +52,13 @@ app.get('/api/top-ratings', (req, res) => {
   res.json([]);
 });
 
-const PORT = 3001;
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-});
+// Export the app for tests
+module.exports = app;
+
+// Start the server only when running this file directly
+if (require.main === module) {
+  const PORT = process.env.PORT || 3001;
+  app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);
+  });
+}
