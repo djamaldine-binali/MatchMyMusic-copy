@@ -3,3 +3,5 @@ node_modules
 .env
 
 /generated/prisma
+test/fixtures/*.local.json
+prisma/dev-test

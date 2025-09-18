@@ -1,0 +1,28 @@
+[
+    {
+      "label": "userA",
+      "email": "user.a@test.com",
+      "username": "userA",
+      "password": "Passw0rdA!"
+    },
+    {
+      "label": "userB",
+      "email": "user.b@test.com",
+      "username": "userB",
+      "password": "Passw0rdB!"
+    },
+    {
+      "label": "admin",
+      "email": "admin@test.com",
+      "username": "admin",
+      "password": "AdminPassw0rd!",
+      "makeAdmin": true
+    },
+    {
+      "label": "deletedUser",
+      "email": "deleted.user@test.com",
+      "username": "deletedUser",
+      "password": "DelPassw0rd!",
+      "markDeleted": true
+    }
+  ]
