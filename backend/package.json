@@ -10,7 +10,7 @@
     "test": "jest",
     "test:unit": "jest test/unitaires",
     "test:int": "jest test/integration",
-    "test:e2e": "jest test/e2e"
+    "test:e2e": "jest --runInBand test/e2e"
   },
   "keywords": [],
   "author": "",
