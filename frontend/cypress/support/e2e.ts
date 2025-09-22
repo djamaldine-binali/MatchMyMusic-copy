@@ -1,8 +1,8 @@
-// You can add global before/after hooks, custom commands, etc.
-// Example: take a screenshot after each test failure automatically (Cypress does this on run by default)
+// Take a screenshot only when a test passes (not on failure)
 afterEach(function () {
-  if (this.currentTest && this.currentTest.state === 'failed') {
-    cy.screenshot(`failed-${this.currentTest.title}`);
+  if (this.currentTest && this.currentTest.state === 'passed') {
+    const safeTitle = this.currentTest.title.replace(/[\/\\?%*:|"<>]/g, '_');
+    cy.screenshot(safeTitle, { capture: 'runner' });
   }
 });
 

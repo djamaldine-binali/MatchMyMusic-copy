@@ -1,4 +1,5 @@
 import { defineConfig } from 'cypress';
+import fs from 'fs';
 
 export default defineConfig({
   e2e: {
@@ -8,9 +9,28 @@ export default defineConfig({
     video: true,
     screenshotsFolder: 'cypress/screenshots',
     videosFolder: 'cypress/videos',
-    screenshotOnRunFailure: true,
+    screenshotOnRunFailure: false,
     setupNodeEvents(on, config) {
-      // Add node event listeners here if needed
+      // Keep videos/screenshots only when spec passes; delete on failure
+      on('after:spec', (spec, results) => {
+        if (!results) return;
+        const failed = results.stats.failures > 0;
+
+        if (failed) {
+          // Delete video if present
+          if (results.video && fs.existsSync(results.video)) {
+            try { fs.unlinkSync(results.video); } catch {}
+          }
+          // Delete any screenshots taken
+          if (results.screenshots && results.screenshots.length) {
+            for (const s of results.screenshots) {
+              if (s.path && fs.existsSync(s.path)) {
+                try { fs.unlinkSync(s.path); } catch {}
+              }
+            }
+          }
+        }
+      });
       return config;
     },
   },
